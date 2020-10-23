@@ -1,7 +1,7 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const rootPath = path.resolve(__dirname, '..')
+const rootPath = path.resolve(__dirname, '..');
 
 module.exports = {
   resolve: {
@@ -19,6 +19,17 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -35,7 +46,5 @@ module.exports = {
     filename: 'js/[name].js',
     publicPath: './'
   },
-  plugins: [
-    new HtmlWebpackPlugin()
-  ]
-}
+  plugins: [new HtmlWebpackPlugin()]
+};
